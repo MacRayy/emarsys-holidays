@@ -5,5 +5,6 @@ import planHoliday from './app.js'
 
 test('Test for creating destination plans', t => {
 	t.deepEqual(planHoliday.createDestinations('X'), [{destination: 'X', rule: 'X'}])
+	t.deepEqual(planHoliday.createDestinations('X', 'Y', 'Z'), [{destination: 'X', rule: 'X'}, {destination: 'Y', rule: 'Y'}, {destination: 'Z', rule: 'Z'}])
 	t.end()
 })
