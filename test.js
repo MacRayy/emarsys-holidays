@@ -4,7 +4,9 @@ import test from 'tape'
 import planHoliday from './app.js'
 
 test('Test for creating destination plans', t => {
-	t.deepEqual(planHoliday.createDestinations('X'), [{destination: 'X', rule: 'X'}])
-	t.deepEqual(planHoliday.createDestinations('X', 'Y', 'Z'), [{destination: 'X', rule: 'X'}, {destination: 'Y', rule: 'Y'}, {destination: 'Z', rule: 'Z'}])
+	t.deepEqual(planHoliday.createDestinations('X'), [{destination: 'X', travelThrough: 'X'}])
+	t.deepEqual(planHoliday.createDestinations('X', 'Y', 'Z'), [{destination: 'X', travelThrough: 'X'}, {destination: 'Y', travelThrough: 'Y'}, {destination: 'Z', travelThrough: 'Z'}])
+	t.deepEqual(planHoliday.createDestinations('X', 'Y => Z', 'Z'), [{destination: 'X', travelThrough: 'X'}, {destination: 'Y', travelThrough: 'Z'}, {destination: 'Z', travelThrough: 'Z'}])
+	t.deepEqual(planHoliday.createDestinations('U', 'V => W', 'W => Z', 'X => U', 'Y => V', 'Z'), [{destination: 'U', travelThrough: 'U'}, {destination: 'V', travelThrough: 'W'}, {destination: 'W', travelThrough: 'Z'}, {destination: 'X', travelThrough: 'U'}, {destination: 'Y', travelThrough: 'V'}, {destination: 'Z', travelThrough: 'Z'}])
 	t.end()
 })
