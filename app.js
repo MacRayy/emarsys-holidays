@@ -25,18 +25,27 @@ const planHoliday = (function () {
 		const destinationsWithRules = createDestinations(...destinations)
 		let route = []
 
-		destinationsWithRules.forEach(dest => {
+		destinationsWithRules.forEach((dest, i) => {
 			if (!route.includes(dest.destination)) {
 				if (dest.destination === dest.travelThrough) {
+					route.push(dest.destination)
+				} else if (route.includes(dest.travelThrough) && route.indexOf(dest.travelThrough) > 0) {
+					route.splice(route.indexOf(dest.travelThrough) + 1, 0, dest.destination)
+				} else if (route.includes(dest.travelThrough)) {
+					route.splice(route.indexOf(dest.travelThrough), 1)
+					route.push(dest.travelThrough)
 					route.push(dest.destination)
 				} else {
 					route.push(dest.travelThrough)
 					route.push(dest.destination)
 				}
+			} else {
+				if (!route.includes(dest.travelThrough)) {
+					route.splice(i - 1, 0, dest.travelThrough)
+
+				}
 			}
 		})
-
-		console.log(route.join(''))
 
 		return route.join('')
 	}
@@ -46,7 +55,5 @@ const planHoliday = (function () {
 		createTravelRoute
 	}
 })()
-
-planHoliday.createTravelRoute('X', 'Y => Z', 'Z')
 
 export default planHoliday
