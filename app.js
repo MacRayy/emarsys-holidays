@@ -2,20 +2,18 @@
 
 const planHoliday = (function () {
 	const createDestinations = (...dests) => {
-		let destinations = []
-
-		dests.forEach(dest => {
+		let destinations = dests.map(dest => {
 			if (dest.length > 1) {
 				let destWithRule = dest.split(' ').filter(el => el !== '=>')
-				destinations.push({
+				return {
 					destination: destWithRule[0],
 					travelThrough: destWithRule[1]
-				})
+				}
 			} else {
-				destinations.push({
+				return {
 					destination: dest,
 					travelThrough: dest
-				})
+				}
 			}
 		})
 		return destinations
