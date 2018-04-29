@@ -1,8 +1,9 @@
 'use strict'
 
 import test from 'tape'
+import planHoliday from './app.js'
 
-test('A passing test', (t) => {
-	t.pass('This test will pass.')
+test('Test for creating destination plans', t => {
+	t.deepEqual(planHoliday.createDestinations('X'), [{destination: 'X', rule: 'X'}])
 	t.end()
 })
