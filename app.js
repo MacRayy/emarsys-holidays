@@ -21,8 +21,22 @@ const planHoliday = (function () {
 		return destinations
 	}
 
+	const createTravelRoute = (...destinations) => {
+		const destinationsWithRules = createDestinations(...destinations)
+		let route = ''
+
+		destinationsWithRules.forEach(dest => {
+			if (dest.destination === dest.travelThrough) {
+				route += dest.destination
+			}
+		})
+
+		return route
+	}
+
 	return {
-		createDestinations
+		createDestinations,
+		createTravelRoute
 	}
 })()
 
