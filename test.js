@@ -23,10 +23,19 @@ test('Test for creating route with multiple input', t => {
 
 test('Test for creating route with multiple input', t => {
 	t.deepEqual(planHoliday.createTravelRoute('X', 'Y => Z', 'Z'), 'XZY')
+	t.deepEqual(planHoliday.createTravelRoute('X => Y', 'Y => Z', 'Z'), 'ZYX')
 	t.end()
 })
 
 test('Test for creating route with multiple input', t => {
 	t.deepEqual(planHoliday.createTravelRoute('U', 'V => W', 'W => Z', 'X => U', 'Y => V', 'Z'), 'ZWVYUX')
+	t.deepEqual(planHoliday.createTravelRoute('U', 'V => W', 'W => Z', 'Y => V', 'Z'), 'UZWVY')
+	t.end()
+})
+
+test('Test for creating route with multiple input if the imputs are the same', t => {
+	t.deepEqual(planHoliday.createTravelRoute('X', 'X', 'X'), 'X')
+	t.deepEqual(planHoliday.createTravelRoute('X', 'Y', 'X'), 'XY')
+	t.deepEqual(planHoliday.createTravelRoute('X', 'X => Y', 'Y'), 'YX')
 	t.end()
 })
