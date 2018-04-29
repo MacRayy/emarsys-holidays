@@ -20,3 +20,8 @@ test('Test for creating route with multiple input', t => {
 	t.deepEqual(planHoliday.createTravelRoute('X', 'Y', 'Z'), 'XYZ')
 	t.end()
 })
+
+test('Test for creating route with multiple input', t => {
+	t.deepEqual(planHoliday.createTravelRoute('X', 'Y => Z', 'Z'), 'XZY')
+	t.end()
+})

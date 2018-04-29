@@ -23,15 +23,22 @@ const planHoliday = (function () {
 
 	const createTravelRoute = (...destinations) => {
 		const destinationsWithRules = createDestinations(...destinations)
-		let route = ''
+		let route = []
 
 		destinationsWithRules.forEach(dest => {
-			if (dest.destination === dest.travelThrough) {
-				route += dest.destination
+			if (!route.includes(dest.destination)) {
+				if (dest.destination === dest.travelThrough) {
+					route.push(dest.destination)
+				} else {
+					route.push(dest.travelThrough)
+					route.push(dest.destination)
+				}
 			}
 		})
 
-		return route
+		console.log(route.join(''))
+
+		return route.join('')
 	}
 
 	return {
@@ -39,5 +46,7 @@ const planHoliday = (function () {
 		createTravelRoute
 	}
 })()
+
+planHoliday.createTravelRoute('X', 'Y => Z', 'Z')
 
 export default planHoliday
