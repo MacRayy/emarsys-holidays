@@ -2,7 +2,7 @@
 
 const planHoliday = (function () {
 	const createDestinations = (...dests) => {
-		let destinations = dests.map(dest => {
+		const destinations = dests.map(dest => {
 			if (dest.length > 1) {
 				let destWithRule = dest.split(' ').filter(el => el !== '=>')
 				return {
@@ -21,7 +21,7 @@ const planHoliday = (function () {
 
 	const createTravelRoute = (...destinations) => {
 		const destinationsWithRules = createDestinations(...destinations)
-		let route = []
+		const route = []
 
 		destinationsWithRules.forEach((dest, i) => {
 			if (!route.includes(dest.destination)) {
